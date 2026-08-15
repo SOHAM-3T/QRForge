@@ -40,7 +40,7 @@ export async function exportQRCode(options: {
     };
   }
 
-  const qrOptions = buildQROptions(data, exportDesign, exportLogo);
+  const qrOptions = buildQROptions(data, exportDesign, exportLogo) as NonNullable<ConstructorParameters<typeof QRCodeStyling>[0]>;
 
   // For canvas-based formats, use canvas type
   if (format !== 'svg') {
@@ -75,7 +75,7 @@ export async function getQRPreviewBlob(options: {
 }): Promise<string | null> {
   const { data, design, logo, format = 'png' } = options;
 
-  const qrOptions = buildQROptions(data, design, logo);
+  const qrOptions = buildQROptions(data, design, logo) as NonNullable<ConstructorParameters<typeof QRCodeStyling>[0]>;
   if (format !== 'svg') {
     qrOptions.type = 'canvas';
   }

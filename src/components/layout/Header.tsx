@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Sun, Moon, Github } from 'lucide-react';
+import { QrCode, Sun, Moon, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/use-theme';
 import { cn } from '@/lib/utils';
@@ -58,13 +58,13 @@ export function Header() {
           </Button>
 
           <a
-            href="https://github.com"
+            href="https://github.com/yourusername/qrforge"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View on GitHub"
+            aria-label="View Source Code"
           >
             <Button variant="ghost" size="icon">
-              <Github className="size-4" />
+              <Code className="size-4" />
             </Button>
           </a>
 

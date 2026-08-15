@@ -105,7 +105,7 @@ function scheduleAutosave(state: QRStoreState) {
   }, AUTOSAVE_DEBOUNCE);
 }
 
-const initialContent = getDefaultContent('url') as QRContent;
+const initialContent = getDefaultContent('url') as unknown as QRContent;
 
 export const useQRStore = create<QRStore>()((set, get) => ({
   // Initial state
@@ -123,9 +123,9 @@ export const useQRStore = create<QRStore>()((set, get) => ({
       const newState = {
         ...state,
         contentType: type,
-        content: getDefaultContent(type) as QRContent,
+        content: getDefaultContent(type) as unknown as QRContent,
         isDirty: true,
-        ...pushHistory({ ...state, contentType: type, content: getDefaultContent(type) as QRContent }),
+        ...pushHistory({ ...state, contentType: type, content: getDefaultContent(type) as unknown as QRContent }),
       };
       scheduleAutosave(newState);
       return newState;
@@ -204,7 +204,7 @@ export const useQRStore = create<QRStore>()((set, get) => ({
   reset: () => {
     const fresh: QRStoreState = {
       contentType: 'url',
-      content: getDefaultContent('url') as QRContent,
+      content: getDefaultContent('url') as unknown as QRContent,
       design: { ...DEFAULT_DESIGN },
       logo: null,
       branding: { ...DEFAULT_BRANDING },
