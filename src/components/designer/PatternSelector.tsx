@@ -24,7 +24,7 @@ export function PatternSelector({ type, onChange }: PatternSelectorProps) {
           key={pattern.id}
           variant="outline"
           className={cn(
-            'h-12 w-full justify-center text-xs transition-all',
+            'h-auto py-2 w-full justify-center text-xs transition-all whitespace-normal leading-tight',
             type === pattern.id && 'border-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary'
           )}
           onClick={() => onChange(pattern.id)}

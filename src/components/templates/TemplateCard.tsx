@@ -29,6 +29,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
       const qr = new QRCodeStyling(options);
       setQrCode(qr);
       if (ref.current) {
+        ref.current.innerHTML = '';
         qr.append(ref.current);
       }
     } else {

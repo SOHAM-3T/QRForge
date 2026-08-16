@@ -32,7 +32,7 @@ export function EyeStyleSelector({ squareType, dotType, onChangeSquare, onChange
               key={style.id}
               variant="outline"
               className={cn(
-                'h-10 w-full justify-center text-xs transition-all',
+                'h-auto py-2 w-full justify-center text-xs transition-all whitespace-normal leading-tight',
                 squareType === style.id && 'border-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary'
               )}
               onClick={() => onChangeSquare(style.id)}
@@ -51,7 +51,7 @@ export function EyeStyleSelector({ squareType, dotType, onChangeSquare, onChange
               key={style.id}
               variant="outline"
               className={cn(
-                'h-10 w-full justify-center text-xs transition-all',
+                'h-auto py-2 w-full justify-center text-xs transition-all whitespace-normal leading-tight',
                 dotType === style.id && 'border-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary'
               )}
               onClick={() => onChangeDot(style.id)}

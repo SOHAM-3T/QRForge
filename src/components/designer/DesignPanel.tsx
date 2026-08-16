@@ -19,7 +19,7 @@ export function DesignPanel() {
       </div>
 
       <Tabs defaultValue="patterns" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 mb-4">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto gap-1 mb-4">
           <TabsTrigger value="patterns">Patterns</TabsTrigger>
           <TabsTrigger value="colors">Colors</TabsTrigger>
           <TabsTrigger value="logo">Logo</TabsTrigger>
