@@ -6,6 +6,8 @@ import { ColorPicker } from './ColorPicker';
 import { LogoPanel } from './LogoPanel';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export function DesignPanel() {
   const { design, updateDesign } = useQRStore();
@@ -85,6 +87,32 @@ export function DesignPanel() {
               step={1}
               onValueChange={([margin]) => updateDesign({ margin })}
             />
+          </div>
+
+          <div className="space-y-3">
+            <Label className="text-sm font-semibold">Error Correction</Label>
+            <div className="grid grid-cols-4 gap-1.5">
+              {(['L', 'M', 'Q', 'H'] as const).map((level) => (
+                <Button
+                  key={level}
+                  variant="outline"
+                  size="sm"
+                  className={cn(
+                    'text-xs',
+                    design.errorCorrectionLevel === level && 'border-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary'
+                  )}
+                  onClick={() => updateDesign({ errorCorrectionLevel: level })}
+                >
+                  {level}
+                </Button>
+              ))}
+            </div>
+            <p className="text-[11px] text-muted-foreground">
+              {design.errorCorrectionLevel === 'L' && 'Low (~7% recovery) — smallest QR code'}
+              {design.errorCorrectionLevel === 'M' && 'Medium (~15% recovery) — balanced'}
+              {design.errorCorrectionLevel === 'Q' && 'Quartile (~25% recovery) — good for damage'}
+              {design.errorCorrectionLevel === 'H' && 'High (~30% recovery) — best for logos'}
+            </p>
           </div>
         </TabsContent>
       </Tabs>

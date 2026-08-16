@@ -18,7 +18,7 @@ const PATTERNS: { id: QRDesignConfig['dotType']; label: string }[] = [
 
 export function PatternSelector({ type, onChange }: PatternSelectorProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+    <div className="grid grid-cols-2 gap-2">
       {PATTERNS.map((pattern) => (
         <Button
           key={pattern.id}

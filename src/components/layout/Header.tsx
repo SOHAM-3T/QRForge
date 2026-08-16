@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Sun, Moon, Code } from 'lucide-react';
+import { QrCode, Sun, Moon, Code, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/use-theme';
 import { cn } from '@/lib/utils';
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 export function Header() {
   const { resolved, toggleTheme } = useTheme();
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full glass">
@@ -58,7 +60,7 @@ export function Header() {
           </Button>
 
           <a
-            href="https://github.com/yourusername/qrforge"
+            href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Source Code"
@@ -73,8 +75,42 @@ export function Header() {
               Create QR
             </Button>
           </Link>
+
+          {/* Mobile menu toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+          </Button>
         </div>
       </div>
+
+      {/* Mobile Nav */}
+      {mobileMenuOpen && (
+        <nav className="border-t border-border/30 bg-card/95 backdrop-blur-lg md:hidden animate-fade-in" aria-label="Mobile navigation">
+          <div className="mx-auto max-w-7xl space-y-1 px-4 py-3">
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  'block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                  location.pathname === item.path
+                    ? 'bg-accent text-accent-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
