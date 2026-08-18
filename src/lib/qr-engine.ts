@@ -66,6 +66,8 @@ export function buildQROptions(
       margin: logo.padding,
       crossOrigin: 'anonymous',
     };
+  } else {
+    options.image = '';
   }
 
   return options;

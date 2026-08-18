@@ -35,7 +35,9 @@ export async function exportQRCode(options: {
     const scale = exportWidth / design.width;
     exportLogo = {
       ...logo,
-      size: Math.round(logo.size * scale),
+      // size is a coefficient (0-1), it is resolution-independent
+      size: logo.size,
+      // padding is in pixels, so it should be scaled
       padding: Math.round(logo.padding * scale),
     };
   }
