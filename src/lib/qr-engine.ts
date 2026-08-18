@@ -62,7 +62,7 @@ export function buildQROptions(
     options.image = logo.src;
     options.imageOptions = {
       hideBackgroundDots: logo.hideBackgroundDots,
-      imageSize: logo.size / design.width,
+      imageSize: logo.size,
       margin: logo.padding,
       crossOrigin: 'anonymous',
     };
